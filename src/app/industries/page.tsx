@@ -1,0 +1,14 @@
+import type {Metadata} from "next";
+import Link from "next/link";
+import Image from "next/image";
+import { ArrowUpRight } from "lucide-react";
+import { Reveal } from "@/components/reveal";
+import { PrimaryLink } from "@/components/buttons";
+import { industries } from "@/lib/data";
+import { whatsappHref } from "@/lib/whatsapp";
+export const metadata:Metadata={title:"Industries & Hydraulic Applications",description:"Explore the industrial applications Flowton can review, from manufacturing and steel plants to lifting, mobile equipment and recycling machinery."};
+export default function IndustriesPage(){return <main id="main">
+ <section className="inner-hero"><div className="site-shell"><div className="breadcrumbs"><Link href="/">Home</Link><span>/</span>Industries</div><span className="section-kicker light">EQUIPMENT & APPLICATIONS</span><h1>Different industries.<br/><em>One engineering mindset.</em></h1><p className="inner-hero-desc">Hydraulics power some of industry’s most demanding work. We start with the equipment, operating conditions and a defined technical requirement.</p></div><span className="inner-hero-deco">IND / 06</span></section>
+ <section className="section"><div className="site-shell"><Reveal className="section-intro"><div><span className="section-kicker">SELECT APPLICATION AREAS</span><h2 className="section-title">Work around<br/><em>your machinery.</em></h2></div><p className="intro-side">The examples below illustrate common hydraulic needs, not a guarantee of model-specific or site-specific service availability.</p></Reveal><div className="industries-page-grid">{industries.map((ind,i)=><Reveal className="industry-large-card" key={ind.number} delay={(i%2)*.09}><div className="industry-large-top"><span>{ind.number} / 06</span><span>INDUSTRIAL APPLICATION</span></div><div className="industry-large-visual industry-photo-visual"><Image src={i%4===0?"/images/industrial-press.webp":i%4===1?"/images/hydraulic-power-pack.webp":i%4===2?"/images/hydraulic-servicing.webp":"/images/hydraulic-components.webp"} alt={`${ind.name}: machinery and hydraulics`} fill sizes="(max-width: 640px) 100vw, 50vw" quality={88}/><span className="industry-visual-number">{ind.number}</span></div><h3>{ind.name}</h3><p>{ind.summary}</p><div className="industry-large-bottom"><span>{ind.detail}</span><a href={whatsappHref(`Hello Mr. Ehtesham Hasan, I have a hydraulic requirement for ${ind.name.toLowerCase()}.\nEquipment:\nRequirement:\nLocation:`)} target="_blank" rel="noopener noreferrer" aria-label={`Discuss a requirement for ${ind.name}`}><ArrowUpRight size={20}/></a></div></Reveal>)}</div></div></section>
+ <section className="section-short soft-cta"><div className="site-shell split-cta"><div><span className="section-kicker">DON'T SEE YOUR INDUSTRY?</span><h2>Tell us about<br/><em>your equipment.</em></h2></div><PrimaryLink href={whatsappHref()}>Discuss your application</PrimaryLink></div></section>
+ </main>}
