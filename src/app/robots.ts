@@ -1,3 +1,15 @@
-import type {MetadataRoute} from "next";
-import {COMPANY} from "@/lib/data";
-export default function robots():MetadataRoute.Robots{return {rules:{userAgent:"*",allow:"/"},sitemap:`${COMPANY.website}/sitemap.xml`};}
+
+import type { MetadataRoute } from "next";
+
+const SITE_URL = "https://www.flowtonmfg.com";
+
+export default function robots(): MetadataRoute.Robots {
+  return {
+    rules: {
+      userAgent: "*",
+      allow: "/",
+    },
+    sitemap: `${SITE_URL}/sitemap.xml`,
+    host: SITE_URL,
+  };
+}
